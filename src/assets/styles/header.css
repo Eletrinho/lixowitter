@@ -1,0 +1,43 @@
+/* Header.css */
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between; /* Mantém o espaçamento entre o título e a nav */
+  align-items: center;
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Espaço entre título e botões */
+  align-items: center;
+}
+
+.header-content h1 {
+  margin: 0; /* Remove margens padrão */
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  background-color: #00acee;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-btn:hover {
+  background-color: #0088cc;
+}

@@ -1,33 +1,21 @@
-import './App.css';
-import './assets/styles/style.css'
-import Posts from './components/Posts';
-import { AuthContext } from './contexts/AuthProvider';
-import React, {useContext} from 'react';
-import icon from './assets/images/icon.png'
+import "./App.css";
+import "./assets/styles/style.css";
+import Posts from "./components/Posts";
+import React from "react";
+import Header from "./components/Header";
 
 function App() {
-  const {username, logout} = useContext(AuthContext);
-  return ( <>
-    
-    <header className='header'>
-      <h1>Lixowitter</h1>
-      {username ? (
-        <div>
-          <a className="icon" href={`profile/${username}`} >
-          <img src={icon} alt="" /></a> 
-          <button onClick={logout}>Logout</button>
+  return (
+    <>
+      <Header />
+      <main class="main-container">
+        <div class="post-box">
+          <textarea placeholder="What's on your mind?" rows="3"></textarea>
+          <button>Post</button>
         </div>
-      ) : (
-        <>
-        <a href='/login'>Login</a>
-        <a href='/register'>Register</a>
-        </>
-      )}
-    </header>
-    <div>
-      <Posts />
-    </div>
-  </>
+        <Posts />
+      </main>
+    </>
   );
 }
 

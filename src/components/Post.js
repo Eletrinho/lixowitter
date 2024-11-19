@@ -1,24 +1,25 @@
-import '../assets/styles/style.css';
-import icon from "../assets/images/icon.png";
+import "../assets/styles/style.css";
 
-export default function Post({id, username, name, content, date}) {
-    date = new Date(date);
-    let now = new Date();
-    let hours = Math.floor((now - date) / (1000 * 60 * 60));
-    
-    return (
-        <a href={`post/${id}`} className="posts">
-            <div className="post"> 
-                <a href={`profile/${username}`}>
-                    <img src={icon} className="icon" alt="" />
-                </a> 
-                <span className='cabecario'>
-                    <p className="name"><b>{name}</b></p>
-                    <p className="name">@{username}</p>
-                    <p className='date' title={date.toLocaleString()}> · {hours}h</p>
-                </span>
-                <div className="content">{content}</div>
-            </div>
-        </a>
-    )
+export default function Post({ id, username, name, content, date }) {
+  date = new Date(date);
+  let now = new Date();
+  let hours = Math.floor((now - date) / (1000 * 60 * 60));
+
+  return (
+    <a href={`post/${id}`} className="post-link">
+      <div className="post">
+        <div className="user-info">
+          <div className="avatar">{username[0].toUpperCase()}</div>
+          <span className="name">{name}</span>
+          <span className="username">@{username}</span>
+          <span className="post-hour">· {hours}h</span>
+        </div>
+        <p className="post-content">{content}</p>
+        <div className="post-actions">
+          <button>Like</button>
+          <button>Comment</button>
+        </div>
+      </div>
+    </a>
+  );
 }
