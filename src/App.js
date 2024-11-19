@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import './assets/styles/style.css'
+import Posts from './components/Posts';
+import { AuthContext } from './contexts/AuthProvider';
+import React, {useContext} from 'react';
+import icon from './assets/images/icon.png'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const {username, logout} = useContext(AuthContext);
+  return ( <>
+    
+    <header className='header'>
+      <h1>Lixowitter</h1>
+      {username ? (
+        <div>
+          <a className="icon" href={`profile/${username}`} >
+          <img src={icon} alt="" /></a> 
+          <button onClick={logout}>Logout</button>
+        </div>
+      ) : (
+        <>
+        <a href='/login'>Login</a>
+        <a href='/register'>Register</a>
+        </>
+      )}
+    </header>
+    <div>
+      <Posts />
     </div>
+  </>
   );
 }
 

@@ -1,0 +1,64 @@
+.post {
+    border: 1px solid gray;
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 2;
+    /* padding-bottom: 1rem;
+    margin-bottom: 1rem; */
+    justify-content: start;
+}
+.icon {
+    margin: 1rem;
+    width: 40px;
+    height: 40px;
+    /* border: 3px solid black;
+    border-radius: 50%;
+    background-color: black;
+    color: black; */
+    grid-column: 1;
+    grid-row: 1;
+}
+.content {
+    text-align: start;
+    margin-bottom: 5px;
+    margin-left: 1rem;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.name {
+   
+    align-self: start;
+    justify-self: start;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecario {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+}
+
+.date {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    align-self: start;
+    justify-self: start;
+}
+
+.posts a {
+    color: inherit; /* Mantém a cor do texto sem mudar para a cor padrão do link */
+    text-decoration: none; /* Remove o sublinhado */
+  }
+  
+  .posts a:hover {
+    color: inherit; /* Mantém a cor do texto ao passar o mouse */
+    text-decoration: none; /* Remove o sublinhado ao passar o mouse */
+  }
+  
