@@ -14,7 +14,7 @@ const Header = () => {
         <h1 onClick={() => navigate("/")}>Lixowitter</h1>
         {user ? (
           <nav className="nav">
-            <a className="icon" href={`profile/${user}`}>
+            <a className="icon" href={`/profile/${user}`}>
               <div className="avatar">{user[0].toUpperCase()}</div>
             </a>
             <button className="nav-btn" onClick={logout}>

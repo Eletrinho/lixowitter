@@ -73,7 +73,7 @@ export const RegisterPage = () => {
             </button>
           </form>
           <p className="auth-text">
-            Already have an account? <a href="login.html">Login here</a>.
+            Already have an account? <a href="/login">Login here</a>.
           </p>
         </div>
       </div>
