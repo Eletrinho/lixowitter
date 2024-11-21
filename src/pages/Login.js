@@ -10,10 +10,16 @@ export const LoginPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    await login(username, password);
-    navigate("/");
-  };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const result = await login(username, password);
+    if (result.success) {
+        navigate("/")
+    } else {
+        console.error(result.message)
+    }
+};
+
 
   return (
     <>
@@ -21,9 +27,9 @@ export const LoginPage = () => {
       <div className="content">
         <div className="auth-container">
           <h2>Login</h2>
-          <form method="POST" className="auth-form">
+          <form className="auth-form" onSubmit={handleLogin}>
             <div className="form-group">
-              <label for="username">Username</label>
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
                 id="username"
@@ -33,7 +39,7 @@ export const LoginPage = () => {
               />
             </div>
             <div className="form-group">
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 id="password"
@@ -42,7 +48,7 @@ export const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type="submit" onClick={handleLogin} className="auth-btn">
+            <button type="submit" className="auth-btn">
               Login
             </button>
           </form>

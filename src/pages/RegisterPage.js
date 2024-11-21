@@ -11,27 +11,23 @@ export const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
-    await register(name, username, email, password);
-    navigate("/");
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const result = await register(name, username, email, password);
+    if (result.success) {
+        navigate("/login")
+    } else {
+        console.error(result.message)
+    }
   };
 
   return (
-    // <div>
-    //   <h1>Register Page</h1>
-    //   <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-    //   <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-    //   <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-    //   <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-    //   <button onClick={handleRegister}>Login</button>
-    // </div>
-
     <>
       <Header />
       <div className="content">
         <div className="auth-container">
           <h2>Register</h2>
-          <form action="/register" method="POST" className="auth-form">
+          <form className="auth-form" onSubmit={handleRegister}>
             <div className="form-group">
               <label for="name">Name</label>
               <input
@@ -72,7 +68,7 @@ export const RegisterPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type="submit" onClick={handleRegister} className="auth-btn">
+            <button type="submit" className="auth-btn">
               Register
             </button>
           </form>
