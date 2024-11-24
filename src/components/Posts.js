@@ -13,7 +13,7 @@ export default function Posts() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setPosts(data);
+        setPosts(data.sort((a, b) => new Date(b.date) - new Date(a.date)))
       } catch (error) {
         console.error("Error fetching posts:", error);
       }

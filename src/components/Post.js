@@ -6,7 +6,7 @@ export default function Post({ id, username, name, content, date }) {
   let hours = Math.floor((now - date) / (1000 * 60 * 60));
 
   return (
-    <a href={`post/${id}`} className="post-link">
+    <a href={`/post/${id}`} className="post-link">
       <div className="post">
         <div className="user-info">
           <div className="avatar">{username[0].toUpperCase()}</div>
