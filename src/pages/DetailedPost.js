@@ -3,10 +3,14 @@ import { useParams } from "react-router-dom";
 import Post from "../components/Post";
 import "../assets/styles/style.css";
 import Header from "../components/Header";
+import axios from "axios";
+
 
 export function DetailedPost() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -17,6 +21,8 @@ export function DetailedPost() {
         }
         const data = await response.json();
         setPost(data);
+        data.comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setComments(data.comments);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -28,6 +34,18 @@ export function DetailedPost() {
   if (!post) {
     return <div>Loading...</div>;
   }
+
+  const handleAddComment = async () => {
+    if (!newComment.trim()) return; // Não permite comentários vazios
+    try {
+      const response = await axios.post(`http://localhost:8080/comments/${id}`,{ text: newComment });
+      setComments([...comments, response.data]);
+      setNewComment("");
+    } catch (error) {
+      console.error("Erro ao adicionar o comentário:", error);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -47,8 +65,17 @@ export function DetailedPost() {
         </div>
 
         <section className="comments">
+        <div className="comment-box">
+            <textarea
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              rows="3"
+            ></textarea>
+            <button onClick={handleAddComment}>Add Comment</button>
+          </div>
           <h2>Comments</h2>
-          {post.comments.map((comment) => (
+          {comments.map((comment) => (
             <Post
               key={comment.id}
               id={comment.id}
